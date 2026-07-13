@@ -11,3 +11,19 @@ export async function getBooks() {
         console.error(error);
     }
 }
+
+export async function getBook(id) {
+    try {
+        const response = await fetch(API + "/books/" + id);
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw Error(response.message);
+        }
+
+        return data;
+    } catch (error){
+        console.error(error);
+        return null;
+    }
+}  
