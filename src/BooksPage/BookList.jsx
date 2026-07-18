@@ -4,7 +4,7 @@ import { checkoutBook } from "../api/books";
 
 export default function BookList({ books, syncBooks }) {
     return (
-        <ul>
+        <section className="book-grid">
             {books.map((book) => (
                 <BookListItem
                     key={book.id}
@@ -12,7 +12,7 @@ export default function BookList({ books, syncBooks }) {
                     syncBooks={syncBooks}
                 />
             ))}
-        </ul>
+        </section>
     );
 }
 
@@ -29,21 +29,40 @@ function BookListItem({ book, syncBooks }) {
         }
     };
 
+
     return (
-        <li>
-            <Link to={`/books/${book.id}`}>
-                <p>{book.title}</p>
+        <article className="book-card">
+
+            <Link 
+                to={`/books/${book.id}`} 
+                className="book-card-link"
+            >
+                <img
+                    src={book.coverimage}
+                    alt={book.title}
+                />
+
+                <div className="book-info">
+                    <h2>{book.title}</h2>
+                    <p>{book.author}</p>
+                </div>
             </Link>
 
-            {token && book.available && (
-                <button onClick={handleCheckout}>
-                    Checkout
-                </button>
-            )}
 
-            {!book.available && (
-                <p>Currently unavailable</p>
-            )}
-        </li>
+            <div className="book-actions">
+                {book.available ? (
+                    token && (
+                        <button onClick={handleCheckout}>
+                            Checkout
+                        </button>
+                    )
+                ) : (
+                    <button disabled>
+                        Currently unavailable
+                    </button>
+                )}
+            </div>
+
+        </article>
     );
 }

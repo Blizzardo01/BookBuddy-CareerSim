@@ -12,20 +12,23 @@ export default function Navbar() {
 
     return (
         <header>
-            <p>BookBuddy</p>
+            <div className="brand">
+                <img src="/books.png" alt="BookBuddy logo" />
+                <p>BookBuddy</p>
+            </div>
 
             <nav>
+                <NavLink
+                    to="/"
+                    className={({ isActive }) =>
+                        isActive ? "active" : undefined
+                    }
+                >
+                    Books
+                </NavLink>
+
                 {!token ? (
                     <>
-                        <NavLink
-                            to="/"
-                            className={({ isActive }) =>
-                                isActive ? "active" : undefined
-                            }
-                        >
-                            Books
-                        </NavLink>
-
                         <NavLink to="/login">
                             Login
                         </NavLink>
@@ -45,9 +48,9 @@ export default function Navbar() {
                             Account
                         </NavLink>
 
-                        <NavLink onClick={handleLogout}>
+                        <button onClick={handleLogout}>
                             Logout
-                        </NavLink>
+                        </button>
                     </>
                 )}
             </nav>

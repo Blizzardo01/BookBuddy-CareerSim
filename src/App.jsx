@@ -5,6 +5,7 @@ import Register from "./auth/Register";
 import Login from "./auth/Login";
 import BookDetails from "./BooksPage/BookDetails";
 import Error404 from "./Error404";
+import Account from "./auth/Account";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route index element={<BooksPage/>}/>
         <Route path="register" element={<Register/>}/>
         <Route path="login" element={<Login/>}/>
+        <Route path="account" element={<Account />} />
         <Route path="/books/:id" element={<BookDetails/>}/>
         <Route path="*" element={<Error404/>}/>
       </Route>

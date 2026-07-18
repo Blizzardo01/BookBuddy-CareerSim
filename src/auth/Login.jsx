@@ -36,9 +36,12 @@ export default function Login() {
             <button>Login</button>
             {error && <p role="alert">{error}</p>}
         </form>
-        <Link to="/register">
-            Don't have an account? Sign up here.
-        </Link>
+        <p className="auth-switch">
+            Don't have an account?{" "}
+            <Link to="/register">
+                Create one
+            </Link>
+        </p>
         </>
     );
 }

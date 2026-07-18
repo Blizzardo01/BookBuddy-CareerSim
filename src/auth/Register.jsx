@@ -39,9 +39,12 @@ export default function Register() {
             <button>Register</button>
             {error && <p role="alert">{error}</p>}
         </form>
-        <Link to="/login">
-            <p>Already have an account? Log in here.</p>
-        </Link>
+        <p className="auth-switch">
+            Already a member?{" "}
+            <Link to="/login">
+                Sign in
+            </Link>
+        </p>
         </>
     );
 }

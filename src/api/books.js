@@ -47,3 +47,20 @@ export async function checkoutBook(bookId, token) {
 
     return result;
 }
+
+
+export async function getReservations(token) {
+    const response = await fetch(`${API}/reservations`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+        throw new Error(result.message);
+    }
+
+    return result;
+}
