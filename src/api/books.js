@@ -26,3 +26,24 @@ export async function getBook(id) {
         return null;
     }
 }  
+
+export async function checkoutBook(bookId, token) {
+    const response = await fetch(`${API}/reservations`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+            bookId
+        }),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+        throw new Error(result.message);
+    }
+
+    return result;
+}
