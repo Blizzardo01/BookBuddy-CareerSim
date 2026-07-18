@@ -8,18 +8,24 @@ export function AuthProvider({ children }) {
     const [token, setToken] = useState(null);
 
     const register = async (credentials) => {
-        const response = await fetch(API + "users/register",
-            {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(credentials)
-            });
-        const data = await response.json();
-        if (!response.ok) {
-            throw Error(result.message);
-        }
-        setToken(result.token);
-    };
+    const response = await fetch(`${API}/users/register`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(credentials),
+    });
+
+    const result = await response.json();
+
+    console.log(result); // <-- Add this
+
+    if (!response.ok) {
+        throw new Error(result.message);
+    }
+
+    setToken(result.token);
+};
 
     const login = async (credentials) => {
         const response = await fetch(API + "/users/login",

@@ -30,7 +30,7 @@ export default function Register() {
         <form action={tryRegister}>
             <label>
                 Email
-                <input type="text" name="username" required />
+                <input type="email" name="email" required />
             </label>
             <label>
                 Password
